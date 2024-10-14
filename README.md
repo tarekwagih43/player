@@ -4,7 +4,7 @@ pod player is a simple and easy-to-use video player. Its video controls are simi
 
 This plugin built upon flutter's official [`video_player`](https://pub.dartlang.org/packages/video_player) plugin
 
-This plugin fork from pod_player official ['pod_player'](https://pub.dev/packages/pod_player) plugin.
+This plugin fork from pod_player official [`pod_player`](https://pub.dev/packages/pod_player) plugin.
 
 ---
 
