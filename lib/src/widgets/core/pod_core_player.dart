@@ -16,6 +16,7 @@ class _PodCoreVideoPlayer extends StatelessWidget {
     final podCtr = Get.find<PodGetXVideoController>(tag: tag);
     return Builder(
       builder: (ctrx) {
+        // ignore: deprecated_member_use
         return RawKeyboardListener(
           autofocus: true,
           focusNode:

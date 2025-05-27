@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import 'package:last_pod_player/pod_player.dart';
+import 'package:last_pod_player/last_pod_player.dart';
 
 void main(List<String> args) {
   PodVideoPlayer.enableLogs = true;

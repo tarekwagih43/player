@@ -53,6 +53,8 @@ class _PodVideoQualityController extends _PodVideoController {
   ) {
     final urls0 = urls;
 
+    print("DEDY SUJANA 1 ===>>> $urls");
+
     ///has issues with 240p
     urls0?.removeWhere((element) => element.quality == 240);
 
@@ -80,6 +82,7 @@ class _PodVideoQualityController extends _PodVideoController {
     required List<int> qualityList,
     required List<VideoQalityUrls> videoUrls,
   }) async {
+    print("DEDY SUJANA 1 ===>>> $videoUrls");
     sortQualityVideoUrls(videoUrls);
     if (vimeoOrVideoUrls.isEmpty) {
       throw Exception('videoQuality cannot be empty');

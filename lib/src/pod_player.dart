@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:universal_html/html.dart' as uni_html;
 
-import '../pod_player.dart';
+import '../last_pod_player.dart';
 import 'controllers/pod_getx_video_controller.dart';
 import 'utils/logger.dart';
 import 'widgets/double_tap_icon.dart';

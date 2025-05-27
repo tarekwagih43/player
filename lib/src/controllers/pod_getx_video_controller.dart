@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:universal_html/html.dart' as uni_html;
-import 'package:wakelock_plus/wakelock_plus.dart';
+//import 'package:wakelock_plus/wakelock_plus.dart';
 
-import '../../pod_player.dart';
+import '../../last_pod_player.dart';
 import '../utils/logger.dart';
 import '../utils/video_apis.dart';
 
@@ -120,7 +120,7 @@ class PodGetXVideoController extends _PodGesturesController {
           qualityList: podPlayerConfig.videoQualityPriority,
           videoUrls: urls,
         );
-
+        print("DEDY SUJANA 1 ===>>> $url");
         ///
         _videoCtr = VideoPlayerController.networkUrl(
           Uri.parse(url),
@@ -223,10 +223,12 @@ class PodGetXVideoController extends _PodGesturesController {
         onRightDoubleTap();
         return;
       }
+      // ignore: deprecated_member_use
       if (event.isKeyPressed(LogicalKeyboardKey.keyF) &&
           event.logicalKey.keyLabel == 'F') {
         toggleFullScreenOnWeb(appContext, tag);
       }
+      // ignore: deprecated_member_use
       if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
         if (isFullScreen) {
           uni_html.document.exitFullscreen();
@@ -257,18 +259,18 @@ class PodGetXVideoController extends _PodGesturesController {
     podLog(_podVideoState.toString());
     switch (_podVideoState) {
       case PodVideoState.playing:
-        if (podPlayerConfig.wakelockEnabled) WakelockPlus.enable();
+        //if (podPlayerConfig.wakelockEnabled) WakelockPlus.enable();
         playVideo(true);
         break;
       case PodVideoState.paused:
-        if (podPlayerConfig.wakelockEnabled) WakelockPlus.disable();
+        //if (podPlayerConfig.wakelockEnabled) WakelockPlus.disable();
         playVideo(false);
         break;
       case PodVideoState.loading:
         isShowOverlay(true);
         break;
       case PodVideoState.error:
-        if (podPlayerConfig.wakelockEnabled) WakelockPlus.disable();
+        //if (podPlayerConfig.wakelockEnabled) WakelockPlus.disable();
         playVideo(false);
         break;
     }

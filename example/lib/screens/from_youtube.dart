@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:last_pod_player/pod_player.dart';
+import 'package:last_pod_player/last_pod_player.dart';
 
 class PlayVideoFromYoutube extends StatefulWidget {
   const PlayVideoFromYoutube({Key? key}) : super(key: key);
@@ -9,13 +9,14 @@ class PlayVideoFromYoutube extends StatefulWidget {
 }
 
 class _PlayVideoFromYoutubeState extends State<PlayVideoFromYoutube> {
-  late final PodPlayerController controller;
+  late PodPlayerController controller;
   final videoTextFieldCtr = TextEditingController();
+
   @override
   void initState() {
     controller = PodPlayerController(
       playVideoFrom:
-          PlayVideoFrom.youtube('https://www.youtube.com/watch?v=A3ltMaM6noM'),
+          PlayVideoFrom.youtube('https://www.youtube.com/watch?v=GV0r7yTczXo'),
     )..initialise();
     super.initState();
   }
@@ -31,23 +32,15 @@ class _PlayVideoFromYoutubeState extends State<PlayVideoFromYoutube> {
     return Scaffold(
       appBar: AppBar(title: const Text('Youtube player')),
       body: SafeArea(
-        child: Center(
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              PodVideoPlayer(
-                controller: controller,
-                videoThumbnail: const DecorationImage(
-                  image: NetworkImage(
-                    'https://images.unsplash.com/photo-1569317002804-ab77bcf1bce4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dW5zcGxhc2h8ZW58MHx8MHx8&w=1000&q=80',
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(height: 40),
-              _loadVideoFromUrl()
-            ],
-          ),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            PodVideoPlayer(
+              controller: controller,
+            ),
+            const SizedBox(height: 20),
+            _loadVideoFromUrl(),
+          ],
         ),
       ),
     );

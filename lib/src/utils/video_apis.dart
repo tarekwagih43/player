@@ -126,12 +126,13 @@ class VideoApis {
   ) async {
     try {
       final yt = YoutubeExplode();
-      final urls = <VideoQalityUrls>[];
+      final urlsMuxed = <VideoQalityUrls>[];
+      
       if (live) {
         final url = await yt.videos.streamsClient.getHttpLiveStreamUrl(
           VideoId(youtubeIdOrUrl),
         );
-        urls.add(
+        urlsMuxed.add(
           VideoQalityUrls(
             quality: 360,
             url: url,
@@ -140,21 +141,29 @@ class VideoApis {
       } else {
         final manifest = await yt.videos.streamsClient.getManifest(
           youtubeIdOrUrl,
-          ytClients: [YoutubeApiClient.mediaConnect],
+          ytClients: [
+            YoutubeApiClient.ios,
+            YoutubeApiClient.android,
+            YoutubeApiClient.safari,
+            YoutubeApiClient.androidVr
+          ],
         );
-        urls.addAll(
-          manifest.muxed.map(
-            (element) => VideoQalityUrls(
-              quality: int.parse(element.qualityLabel.split('p')[0]),
-              url: element.url.toString(),
+        urlsMuxed.addAll(
+            manifest.muxed.map(
+              (element) {
+                return VideoQalityUrls(
+                quality: int.parse(element.qualityLabel.split("p")[0]),
+                url: element.url.toString(),
+              );
+              },
             ),
-          ),
-        );
+          );
       }
-      // Close the YoutubeExplode's http client.
+
       yt.close();
-      return urls;
-    } catch (error) {
+      return urlsMuxed;
+
+    } on Exception catch (error) {
       if (error.toString().contains('XMLHttpRequest')) {
         log(
           podErrorString(

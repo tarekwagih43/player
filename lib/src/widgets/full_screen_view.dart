@@ -39,6 +39,7 @@ class _FullScreenViewState extends State<FullScreenView>
           strokeWidth: 2,
         );
 
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         if (kIsWeb) {
